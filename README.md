@@ -9,6 +9,7 @@ Bauteile:
   -	Verstärker
   -	Mikrofon
   -	Brückengleichrichter
+
 Programmfunktionen:
   -	Ausgabe der Stimmenlautstärke
   -	Ausgabe des Bass
