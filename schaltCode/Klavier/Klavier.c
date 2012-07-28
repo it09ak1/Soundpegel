@@ -8,6 +8,7 @@
 
 void InitADC()
 {
+	//PORTA = 0;
 	PORTA = 0;
 	// MUX0-4 setzen (Datenhandbuch Seite 219)
 	// ADC1 und ADC 0 (diese haben wir jetzt genommen)
@@ -35,12 +36,12 @@ int main(void)
 {
 	//uint8_t ledOut = 0b00000000;
 	DDRB = 0xff;
-	//DDRD = 0x00;
+	DDRD = 0x00;
 	DDRA = 0x00;
 
 	InitADC();
-	PORTD = 0;
-	PORTB = (uint8_t)(~(0b00000001));
+	PORTB = (uint8_t)(~(0b00000000));
+	//PORTB = (uint8_t)(~(0b00000001));
 
 	// Interrupts programmieren
 	//GICR	|= ( (1<<INT0) | (1<<INT1) | (1<<INT2) );	// INT0, 1, 2 zulassen
@@ -53,15 +54,20 @@ int main(void)
 	//ledOut = 0b00000000;
 
 	int value = 0;
+	//int pinD = PIND;
+	int programm = 0;
+	int maxValue = 0;
+	uint8_t maxVumeter = 0b00000000;
 
 	while(1)
 	{
-
 		value = ReadADC();
 		value = value - 820;
 		value = abs(value);
 		uint8_t vumeter = 0b00000000;
 		
+		// BA Config
+		/*
 		if (value > 50) {
 			vumeter |= 0b00000001;
 		}
@@ -85,85 +91,136 @@ int main(void)
 		}
 		if (value > 100) {
 			vumeter |= 0b10000000;
-		}
+		}*/
 		
-		//value = ReadADC();
-		//value -=850;
-		//value = abs(value);
-		//PORTB = (uint8_t)(~(value));
-		//PORTB = (uint8_t)(~(ReadADC()));
-		PORTB = (uint8_t)(~(vumeter));
-		
-		_delay_ms(100);
-
-		//if (ReadADC() > 1000)
-		//{
-			//PORTB = (PORTB << 1);	
-		//	_delay_ms(2000);
-		//}
-		//if (PIND)
-		//{
-			//PORTB = PIND;
-
-			//selectedPIN = PIND;
-
-		/*
 		if (PIND == 0b11111110)
 		{
-			PORTB = (uint8_t)(~(0b00000001));
+			PORTB = PIND;
+			programm = 1;
 		}
 		else if (PIND == 0b11111101)
 		{
-			PORTB = (uint8_t)(~(0b00000011));
-		}
-		else if (PIND == 0b11111011)
-		{
-			PORTB = (uint8_t)(~(0b00000111));
-		}
-		else if (PIND == 0b11110111)
-		{
-			PORTB = (uint8_t)(~(0b00001111));
-		}
-		else if (PIND == 0b11101111)
-		{
-			PORTB = (uint8_t)(~(0b00011111));
-		}
-		else if (PIND == 0b11011111)
-		{
-			PORTB = (uint8_t)(~(0b00111111));
-		}
-		else if (PIND == 0b10111111)
-		{
-			PORTB = (uint8_t)(~(0b01111111));
+			PORTB = PIND;
+			programm = 2;
 		}
 		else if (PIND == 0b01111111)
 		{
-			PORTB = (uint8_t)(~(0b11111111));
+			// loeschen der Werte	
+			PORTB = PIND;
+			maxVumeter = 0b00000000;
+			maxValue = 0;
+			programm = 0;
 		}
-		else
+
+		if (programm == 1)
 		{
-			PORTB = (uint8_t)(~(0b00000000));
+			// home work
+			// eifach reinpusten und sehen wie hoch es steigt
+			if (value > 200) {
+					vumeter |= 0b00000001;
+				}
+				if (value > 275) {
+					vumeter |= 0b00000010;
+				}
+				if (value > 305) {
+					vumeter |= 0b00000100;
+				}
+				if (value > 335) {
+					vumeter |= 0b00001000;
+				}
+				if (value > 365) {
+					vumeter |= 0b00010000;
+				}
+				if (value > 395) {
+					vumeter |= 0b00100000;
+				}
+				if (value > 425) {
+					vumeter |= 0b01000000;
+				}
+				if (value > 555) {
+					vumeter |= 0b10000000;
+				}
+		
+			//value = ReadADC();
+			//value -=850;
+			//value = abs(value);
+			//PORTB = (uint8_t)(~(value));
+			//PORTB = (uint8_t)(~(ReadADC()));
+			PORTB = (uint8_t)(~(vumeter));
 		}
-		*/
-		
+		else if (programm == 2)
+		{
+			// maximalen pust wert speichern
+			// wenn maximal Pust wert groesser als der letzte ist
+			if (value > maxValue)
+			{
+				/*
+				if (value > 40) {
+					vumeter |= 0b00000001;
+				}
+				if (value > 55) {
+					vumeter |= 0b00000010;
+				}
+				if (value > 85) {
+					vumeter |= 0b00000100;
+				}
+				if (value > 100) {
+					vumeter |= 0b00001000;
+				}
+				if (value > 135) {
+					vumeter |= 0b00010000;
+				}
+				if (value > 170) {
+					vumeter |= 0b00100000;
+				}
+				if (value > 190) {
+					vumeter |= 0b01000000;
+				}
+				if (value > 200) {
+					vumeter |= 0b10000000;
+				}*/
 
-		//}
-		//else
-		//{
-			//PORTB = selectedPIN;
-		//	PORTB = (uint8_t)(~(0b00000000));
-		//}
-		//ledOut = 0b00000000;		
+				if (value > 200) {
+					//vumeter |= 0b00000001;
+					maxVumeter |= 0b00000001;
+				}
+				if (value > 215) {
+					//vumeter |= 0b00000010;
+					maxVumeter |= 0b00000010;
+				}
+				if (value > 355) {
+					//vumeter |= 0b00000100;
+					maxVumeter |= 0b00000100;
+				}
+				if (value > 425) {
+					//vumeter |= 0b00001000;
+					maxVumeter |= 0b00001000;
+				}
+				if (value > 565) {
+					//vumeter |= 0b00010000;
+					maxVumeter |= 0b00010000;
+				}
+				if (value > 665) {
+					//vumeter |= 0b00100000;
+					maxVumeter |= 0b00100000;
+				}
+				if (value > 765) {
+					//vumeter |= 0b01000000;
+					maxVumeter |= 0b01000000;
+				}
+				if (value > 845) {
+					//vumeter |= 0b10000000;
+					maxVumeter |= 0b10000000;
+				}
 
-		//for (int i = 0; i <= 7; i++)
-		//{
-		//	if (PIND > i)
-		//	{
-		//		ledOut = (0b00000001 << i);
-		//	}
-		//}
+				maxValue = value;
+			}
+
+			PORTB = (uint8_t)(~(maxVumeter));
+		}
+
+		_delay_ms(200);
 		
-		//PORTB = (uint8_t)(~(ledOut));
 	}
 
 	return 0;
