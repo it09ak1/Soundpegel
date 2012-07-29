@@ -112,7 +112,7 @@ LOAD c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1e4
+.text           0x00000000      0x242
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -185,19 +185,20 @@ LOAD c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000068                __vector_16
                 0x00000068                __vector_18
                 0x00000068                __vector_20
- .text          0x0000006c      0x174 Klavier.o
+ .text          0x0000006c      0x1d2 Klavier.o
                 0x0000006c                InitADC
+                0x00000088                MittelwertADC
                 0x00000078                ReadADC
-                0x00000088                main
- .text          0x000001e0        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000001e0                . = ALIGN (0x2)
+                0x000000d8                main
+ .text          0x0000023e        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000023e                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x000001e0        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000001e0                . = ALIGN (0x2)
+ .text.libgcc   0x0000023e        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000023e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001e0        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000001e0                exit
-                0x000001e0                _exit
+ .fini9         0x0000023e        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000023e                exit
+                0x0000023e                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -216,11 +217,11 @@ LOAD c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001e0        0x4 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000023e        0x4 c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001e4                _etext = .
+                0x00000242                _etext = .
 
-.data           0x00800060        0x0 load address 0x000001e4
+.data           0x00800060        0x0 load address 0x00000242
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -243,8 +244,8 @@ LOAD c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.bss*)
  *(COMMON)
                 0x00800060                PROVIDE (__bss_end, .)
-                0x000001e4                __data_load_start = LOADADDR (.data)
-                0x000001e4                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000242                __data_load_start = LOADADDR (.data)
+                0x00000242                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800060        0x0
                 0x00800060                PROVIDE (__noinit_start, .)
@@ -308,41 +309,41 @@ LOAD c:/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000000       0x20 Klavier.o
 
 .debug_pubnames
-                0x00000000       0x33
+                0x00000000       0x45
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000       0x33 Klavier.o
+                0x00000000       0x45 Klavier.o
 
-.debug_info     0x00000000      0x1b0
+.debug_info     0x00000000      0x258
  *(.debug_info)
- .debug_info    0x00000000      0x1b0 Klavier.o
+ .debug_info    0x00000000      0x258 Klavier.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x119
+.debug_abbrev   0x00000000      0x14c
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x119 Klavier.o
+ .debug_abbrev  0x00000000      0x14c Klavier.o
 
-.debug_line     0x00000000      0x2c4
+.debug_line     0x00000000      0x32b
  *(.debug_line)
- .debug_line    0x00000000      0x2c4 Klavier.o
+ .debug_line    0x00000000      0x32b Klavier.o
 
-.debug_frame    0x00000000       0x40
+.debug_frame    0x00000000       0x50
  *(.debug_frame)
- .debug_frame   0x00000000       0x40 Klavier.o
+ .debug_frame   0x00000000       0x50 Klavier.o
 
-.debug_str      0x00000000      0x10d
+.debug_str      0x00000000      0x13d
  *(.debug_str)
- .debug_str     0x00000000      0x10d Klavier.o
-                                0x141 (size before relaxing)
+ .debug_str     0x00000000      0x13d Klavier.o
+                                0x171 (size before relaxing)
 
-.debug_loc      0x00000000       0xee
+.debug_loc      0x00000000      0x1ee
  *(.debug_loc)
- .debug_loc     0x00000000       0xee Klavier.o
+ .debug_loc     0x00000000      0x1ee Klavier.o
 
 .debug_macinfo
  *(.debug_macinfo)
 OUTPUT(Klavier.elf elf32-avr)
 LOAD linker stubs
 
-.debug_ranges   0x00000000       0x48
- .debug_ranges  0x00000000       0x48 Klavier.o
+.debug_ranges   0x00000000       0x90
+ .debug_ranges  0x00000000       0x90 Klavier.o

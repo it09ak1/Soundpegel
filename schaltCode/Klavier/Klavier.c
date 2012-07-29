@@ -32,6 +32,25 @@ uint16_t ReadADC()
 	return(ADC);
 }
 
+uint16_t MittelwertADC()
+{
+	uint16_t sum;
+	uint16_t mittelwert;
+
+	for (int i=0; i<=7;i++)
+	{
+		uint16_t singleValue = ReadADC();
+
+		sum += singleValue;
+
+		_delay_ms(250);
+	}
+
+	mittelwert = sum/8;
+
+	return mittelwert;
+}
+
 int main(void)
 {
 	//uint8_t ledOut = 0b00000000;
@@ -53,16 +72,24 @@ int main(void)
 	//sei();
 	//ledOut = 0b00000000;
 
-	int value = 0;
+	// warum uint16_t und nicht unsigned int:
+	// uint16_t erhoeht die portabilitaet des Codes
+	// wurede man nur unsigned int waere der Datentype
+	// auf einem x86 = 32bit und auf x64=64bit
+
+	uint16_t value = 0;
 	//int pinD = PIND;
 	int programm = 0;
 	int maxValue = 0;
+	uint16_t abzugswert = 0;
 	uint8_t maxVumeter = 0b00000000;
+
+	abzugswert = MittelwertADC();
 
 	while(1)
 	{
 		value = ReadADC();
-		value = value - 820;
+		value = value - abzugswert;
 		value = abs(value);
 		uint8_t vumeter = 0b00000000;
 		
@@ -93,6 +120,7 @@ int main(void)
 			vumeter |= 0b10000000;
 		}*/
 		
+		// programm Auswahl
 		if (PIND == 0b11111110)
 		{
 			PORTB = PIND;
@@ -109,13 +137,42 @@ int main(void)
 			PORTB = PIND;
 			maxVumeter = 0b00000000;
 			maxValue = 0;
-			programm = 0;
+			//programm = 0;
+			abzugswert = MittelwertADC();
+			//PORTB = (uint8_t)(~(0b00000000));
 		}
 
 		if (programm == 1)
 		{
+			
+				if (value > 40) {
+					vumeter |= 0b00000001;
+				}
+				if (value > 55) {
+					vumeter |= 0b00000010;
+				}
+				if (value > 85) {
+					vumeter |= 0b00000100;
+				}
+				if (value > 100) {
+					vumeter |= 0b00001000;
+				}
+				if (value > 135) {
+					vumeter |= 0b00010000;
+				}
+				if (value > 170) {
+					vumeter |= 0b00100000;
+				}
+				if (value > 190) {
+					vumeter |= 0b01000000;
+				}
+				if (value > 200) {
+					vumeter |= 0b10000000;
+				}
+
 			// home work
 			// eifach reinpusten und sehen wie hoch es steigt
+			/*
 			if (value > 200) {
 					vumeter |= 0b00000001;
 				}
@@ -139,7 +196,7 @@ int main(void)
 				}
 				if (value > 555) {
 					vumeter |= 0b10000000;
-				}
+				}*/
 		
 			//value = ReadADC();
 			//value -=850;
