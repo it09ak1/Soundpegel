@@ -3,51 +3,55 @@ Klavier.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000242  00000000  00000000  00000054  2**1
+  0 .text         000003d0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .debug_aranges 00000020  00000000  00000000  00000296  2**0
+  1 .bss          00000003  00800060  00800060  00000464  2**0
+                  ALLOC
+  2 .eeprom       00000003  00810000  00810000  00000464  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .debug_aranges 00000020  00000000  00000000  00000467  2**0
                   CONTENTS, READONLY, DEBUGGING
-  2 .debug_pubnames 00000045  00000000  00000000  000002b6  2**0
+  4 .debug_pubnames 000000a9  00000000  00000000  00000487  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .debug_info   00000258  00000000  00000000  000002fb  2**0
+  5 .debug_info   000002a5  00000000  00000000  00000530  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_abbrev 0000014c  00000000  00000000  00000553  2**0
+  6 .debug_abbrev 00000168  00000000  00000000  000007d5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_line   0000032b  00000000  00000000  0000069f  2**0
+  7 .debug_line   000003e3  00000000  00000000  0000093d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_frame  00000050  00000000  00000000  000009cc  2**2
+  8 .debug_frame  00000050  00000000  00000000  00000d20  2**2
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_str    0000013d  00000000  00000000  00000a1c  2**0
+  9 .debug_str    00000175  00000000  00000000  00000d70  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    000001ee  00000000  00000000  00000b59  2**0
+ 10 .debug_loc    0000014b  00000000  00000000  00000ee5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_ranges 00000090  00000000  00000000  00000d47  2**0
+ 11 .debug_ranges 00000090  00000000  00000000  00001030  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
 
 00000054 <__ctors_end>:
   54:	11 24       	eor	r1, r1
@@ -56,473 +60,661 @@ Disassembly of section .text:
   5a:	d4 e0       	ldi	r29, 0x04	; 4
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 6c 00 	call	0xd8	; 0xd8 <main>
-  64:	0c 94 1f 01 	jmp	0x23e	; 0x23e <_exit>
 
-00000068 <__bad_interrupt>:
-  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+00000060 <__do_clear_bss>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
 
-0000006c <InitADC>:
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
 
+0000006a <.do_clear_bss_start>:
+  6a:	a3 36       	cpi	r26, 0x63	; 99
+  6c:	b1 07       	cpc	r27, r17
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 65 00 	call	0xca	; 0xca <main>
+  74:	0c 94 e6 01 	jmp	0x3cc	; 0x3cc <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <InitADC>:
+uint8_t eeVumeterCounter EEMEM;
 
 void InitADC()
 {
 	//PORTA = 0;
 	PORTA = 0;
-  6c:	1b ba       	out	0x1b, r1	; 27
+  7c:	1b ba       	out	0x1b, r1	; 27
 	// ADC1 und ADC 0 (diese haben wir jetzt genommen)
 	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX1) | (1<<MUX0);
 	// 10x Verstaerkung
 	//ADMUX |= (1<<REFS0) | (1<<MUX3) | (1<<MUX0);
 	// ohne Verstaerkung
-	ADMUX = (1<<REFS0);
-  6e:	80 e4       	ldi	r24, 0x40	; 64
-  70:	87 b9       	out	0x07, r24	; 7
+	ADMUX = (1<<REFS0) | (1<<REFS1);
+  7e:	80 ec       	ldi	r24, 0xC0	; 192
+  80:	87 b9       	out	0x07, r24	; 7
 	// ADC3 und ADC 2
 	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX10);
 	ADCSRA = (1 << ADEN) | (1 << ADPS1) | (1 << ADPS0) | ( 0 << ADPS2);
-  72:	83 e8       	ldi	r24, 0x83	; 131
-  74:	86 b9       	out	0x06, r24	; 6
+  82:	83 e8       	ldi	r24, 0x83	; 131
+  84:	86 b9       	out	0x06, r24	; 6
 }
-  76:	08 95       	ret
+  86:	08 95       	ret
 
-00000078 <ReadADC>:
+00000088 <ReadADC>:
 
 uint16_t ReadADC()
 {
 	ADCSRA |= (1 << ADSC);
-  78:	36 9a       	sbi	0x06, 6	; 6
+  88:	36 9a       	sbi	0x06, 6	; 6
 	while (!(ADCSRA & (1 << ADIF)));
-  7a:	34 9b       	sbis	0x06, 4	; 6
-  7c:	fe cf       	rjmp	.-4      	; 0x7a <ReadADC+0x2>
+  8a:	34 9b       	sbis	0x06, 4	; 6
+  8c:	fe cf       	rjmp	.-4      	; 0x8a <ReadADC+0x2>
 
 	ADCSRA |= (1 << ADIF);
-  7e:	34 9a       	sbi	0x06, 4	; 6
+  8e:	34 9a       	sbi	0x06, 4	; 6
 
 	return(ADC);
-  80:	24 b1       	in	r18, 0x04	; 4
-  82:	35 b1       	in	r19, 0x05	; 5
+  90:	24 b1       	in	r18, 0x04	; 4
+  92:	35 b1       	in	r19, 0x05	; 5
 }
-  84:	c9 01       	movw	r24, r18
-  86:	08 95       	ret
+  94:	c9 01       	movw	r24, r18
+  96:	08 95       	ret
 
-00000088 <MittelwertADC>:
+00000098 <MittelwertADC>:
 
 uint16_t MittelwertADC()
 {
-  88:	ef 92       	push	r14
-  8a:	ff 92       	push	r15
-  8c:	0f 93       	push	r16
-  8e:	1f 93       	push	r17
-  90:	cf 93       	push	r28
-  92:	df 93       	push	r29
-  94:	c0 e0       	ldi	r28, 0x00	; 0
-  96:	d0 e0       	ldi	r29, 0x00	; 0
+  98:	0f 93       	push	r16
+  9a:	1f 93       	push	r17
+  9c:	cf 93       	push	r28
+  9e:	df 93       	push	r29
+  a0:	c0 e0       	ldi	r28, 0x00	; 0
+  a2:	d0 e0       	ldi	r29, 0x00	; 0
+	uint16_t sum;
+	uint16_t mittelwert;
+
+	for (int i=0; i<=29;i++)
+	{
+		uint16_t singleValue = ReadADC();
+  a4:	0e 94 44 00 	call	0x88	; 0x88 <ReadADC>
+
+		sum += singleValue;
+  a8:	08 0f       	add	r16, r24
+  aa:	19 1f       	adc	r17, r25
+uint16_t MittelwertADC()
+{
+	uint16_t sum;
+	uint16_t mittelwert;
+
+	for (int i=0; i<=29;i++)
+  ac:	21 96       	adiw	r28, 0x01	; 1
+  ae:	ce 31       	cpi	r28, 0x1E	; 30
+  b0:	d1 05       	cpc	r29, r1
+  b2:	c1 f7       	brne	.-16     	; 0xa4 <MittelwertADC+0xc>
+  b4:	c8 01       	movw	r24, r16
+  b6:	6e e1       	ldi	r22, 0x1E	; 30
+  b8:	70 e0       	ldi	r23, 0x00	; 0
+  ba:	0e 94 bd 01 	call	0x37a	; 0x37a <__udivmodhi4>
+  be:	cb 01       	movw	r24, r22
+	}
+
+	mittelwert = sum/30;
+
+	return mittelwert;
+}
+  c0:	df 91       	pop	r29
+  c2:	cf 91       	pop	r28
+  c4:	1f 91       	pop	r17
+  c6:	0f 91       	pop	r16
+  c8:	08 95       	ret
+
+000000ca <main>:
+
+int main(void)
+{
+  ca:	7f 92       	push	r7
+  cc:	8f 92       	push	r8
+  ce:	9f 92       	push	r9
+  d0:	af 92       	push	r10
+  d2:	bf 92       	push	r11
+  d4:	cf 92       	push	r12
+  d6:	df 92       	push	r13
+  d8:	ef 92       	push	r14
+  da:	ff 92       	push	r15
+  dc:	0f 93       	push	r16
+  de:	1f 93       	push	r17
+  e0:	cf 93       	push	r28
+  e2:	df 93       	push	r29
+	//uint8_t ledOut = 0b00000000;
+	DDRB = 0xff;
+  e4:	1f ef       	ldi	r17, 0xFF	; 255
+  e6:	17 bb       	out	0x17, r17	; 23
+	DDRD = 0x00;
+  e8:	11 ba       	out	0x11, r1	; 17
+	DDRA = 0x00;
+  ea:	1a ba       	out	0x1a, r1	; 26
+	programm = eeprom_read_byte(&eeProgramm);				// Programm aus EEPROM lesen
+  ec:	80 e0       	ldi	r24, 0x00	; 0
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <__eerd_byte_m16>
+  f4:	80 93 60 00 	sts	0x0060, r24
+	maxVumeter = eeprom_read_byte(&eeMaxVumeter);			// Maximalen Wert aus EEPROM lesen
+  f8:	81 e0       	ldi	r24, 0x01	; 1
+  fa:	90 e0       	ldi	r25, 0x00	; 0
+  fc:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <__eerd_byte_m16>
+ 100:	80 93 61 00 	sts	0x0061, r24
+	vumeterCounter = eeprom_read_byte(&eeVumeterCounter);	// Maximalen Wert aus EEPROM lesen
+ 104:	82 e0       	ldi	r24, 0x02	; 2
+ 106:	90 e0       	ldi	r25, 0x00	; 0
+ 108:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <__eerd_byte_m16>
+ 10c:	80 93 62 00 	sts	0x0062, r24
+uint8_t eeVumeterCounter EEMEM;
+
+void InitADC()
+{
+	//PORTA = 0;
+	PORTA = 0;
+ 110:	1b ba       	out	0x1b, r1	; 27
+	// ADC1 und ADC 0 (diese haben wir jetzt genommen)
+	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX1) | (1<<MUX0);
+	// 10x Verstaerkung
+	//ADMUX |= (1<<REFS0) | (1<<MUX3) | (1<<MUX0);
+	// ohne Verstaerkung
+	ADMUX = (1<<REFS0) | (1<<REFS1);
+ 112:	80 ec       	ldi	r24, 0xC0	; 192
+ 114:	87 b9       	out	0x07, r24	; 7
+	// ADC3 und ADC 2
+	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX10);
+	ADCSRA = (1 << ADEN) | (1 << ADPS1) | (1 << ADPS0) | ( 0 << ADPS2);
+ 116:	83 e8       	ldi	r24, 0x83	; 131
+ 118:	86 b9       	out	0x06, r24	; 6
+	programm = eeprom_read_byte(&eeProgramm);				// Programm aus EEPROM lesen
+	maxVumeter = eeprom_read_byte(&eeMaxVumeter);			// Maximalen Wert aus EEPROM lesen
+	vumeterCounter = eeprom_read_byte(&eeVumeterCounter);	// Maximalen Wert aus EEPROM lesen
+
+	InitADC();
+	PORTB = (uint8_t)(~(0b00000000));
+ 11a:	18 bb       	out	0x18, r17	; 24
+	//int pinD = PIND;
+	uint16_t maxValue = 0;
+	uint16_t abzugswert = 0;
+	
+
+	abzugswert = MittelwertADC();
+ 11c:	0e 94 4c 00 	call	0x98	; 0x98 <MittelwertADC>
+ 120:	7c 01       	movw	r14, r24
+ 122:	00 e0       	ldi	r16, 0x00	; 0
+ 124:	10 e0       	ldi	r17, 0x00	; 0
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
+		}
+		else if (PIND == 0b11111011)
+		{
+			PORTB = PIND;
+			programm = 3;
+ 126:	e3 e0       	ldi	r30, 0x03	; 3
+ 128:	9e 2e       	mov	r9, r30
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
+		}
+		else if (PIND == 0b11111101)
+		{
+			PORTB = PIND;
+			programm = 2;
+ 12a:	72 e0       	ldi	r23, 0x02	; 2
+ 12c:	87 2e       	mov	r8, r23
+		
+		// programm Auswahl
+		if (PIND == 0b11111110)
+		{
+			PORTB = PIND;
+			programm = 1;
+ 12e:	77 24       	eor	r7, r7
+ 130:	73 94       	inc	r7
     milliseconds can be achieved.
  */
 void
 _delay_loop_2(uint16_t __count)
 {
 	__asm__ volatile (
-  98:	9a e2       	ldi	r25, 0x2A	; 42
-  9a:	e9 2e       	mov	r14, r25
-  9c:	f1 2c       	mov	r15, r1
-	uint16_t sum;
-	uint16_t mittelwert;
-
-	for (int i=0; i<=7;i++)
-	{
-		uint16_t singleValue = ReadADC();
-  9e:	0e 94 3c 00 	call	0x78	; 0x78 <ReadADC>
-
-		sum += singleValue;
-  a2:	08 0f       	add	r16, r24
-  a4:	19 1f       	adc	r17, r25
-  a6:	84 ec       	ldi	r24, 0xC4	; 196
-  a8:	99 e0       	ldi	r25, 0x09	; 9
-  aa:	f7 01       	movw	r30, r14
-  ac:	31 97       	sbiw	r30, 0x01	; 1
-  ae:	f1 f7       	brne	.-4      	; 0xac <MittelwertADC+0x24>
-		__ticks = (uint16_t) (__ms * 10.0);
-		while(__ticks)
-		{
-			// wait 1/10 ms
-			_delay_loop_2(((F_CPU) / 4e3) / 10);
-			__ticks --;
-  b0:	01 97       	sbiw	r24, 0x01	; 1
-		__ticks = 1;
-	else if (__tmp > 65535)
-	{
-		//	__ticks = requested delay in 1/10 ms
-		__ticks = (uint16_t) (__ms * 10.0);
-		while(__ticks)
-  b2:	d9 f7       	brne	.-10     	; 0xaa <MittelwertADC+0x22>
-uint16_t MittelwertADC()
-{
-	uint16_t sum;
-	uint16_t mittelwert;
-
-	for (int i=0; i<=7;i++)
-  b4:	21 96       	adiw	r28, 0x01	; 1
-  b6:	c8 30       	cpi	r28, 0x08	; 8
-  b8:	d1 05       	cpc	r29, r1
-  ba:	89 f7       	brne	.-30     	; 0x9e <MittelwertADC+0x16>
-  bc:	98 01       	movw	r18, r16
-  be:	83 e0       	ldi	r24, 0x03	; 3
-  c0:	36 95       	lsr	r19
-  c2:	27 95       	ror	r18
-  c4:	8a 95       	dec	r24
-  c6:	e1 f7       	brne	.-8      	; 0xc0 <MittelwertADC+0x38>
-	}
-
-	mittelwert = sum/8;
-
-	return mittelwert;
-}
-  c8:	c9 01       	movw	r24, r18
-  ca:	df 91       	pop	r29
-  cc:	cf 91       	pop	r28
-  ce:	1f 91       	pop	r17
-  d0:	0f 91       	pop	r16
-  d2:	ff 90       	pop	r15
-  d4:	ef 90       	pop	r14
-  d6:	08 95       	ret
-
-000000d8 <main>:
-
-int main(void)
-{
-  d8:	8f 92       	push	r8
-  da:	9f 92       	push	r9
-  dc:	af 92       	push	r10
-  de:	bf 92       	push	r11
-  e0:	cf 92       	push	r12
-  e2:	df 92       	push	r13
-  e4:	ef 92       	push	r14
-  e6:	ff 92       	push	r15
-  e8:	1f 93       	push	r17
-  ea:	cf 93       	push	r28
-  ec:	df 93       	push	r29
-	//uint8_t ledOut = 0b00000000;
-	DDRB = 0xff;
-  ee:	8f ef       	ldi	r24, 0xFF	; 255
-  f0:	87 bb       	out	0x17, r24	; 23
-	DDRD = 0x00;
-  f2:	11 ba       	out	0x11, r1	; 17
-	DDRA = 0x00;
-  f4:	1a ba       	out	0x1a, r1	; 26
-
-
-void InitADC()
-{
-	//PORTA = 0;
-	PORTA = 0;
-  f6:	1b ba       	out	0x1b, r1	; 27
-	// ADC1 und ADC 0 (diese haben wir jetzt genommen)
-	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX1) | (1<<MUX0);
-	// 10x Verstaerkung
-	//ADMUX |= (1<<REFS0) | (1<<MUX3) | (1<<MUX0);
-	// ohne Verstaerkung
-	ADMUX = (1<<REFS0);
-  f8:	90 e4       	ldi	r25, 0x40	; 64
-  fa:	97 b9       	out	0x07, r25	; 7
-	// ADC3 und ADC 2
-	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX10);
-	ADCSRA = (1 << ADEN) | (1 << ADPS1) | (1 << ADPS0) | ( 0 << ADPS2);
-  fc:	93 e8       	ldi	r25, 0x83	; 131
-  fe:	96 b9       	out	0x06, r25	; 6
-	DDRB = 0xff;
-	DDRD = 0x00;
-	DDRA = 0x00;
-
-	InitADC();
-	PORTB = (uint8_t)(~(0b00000000));
- 100:	88 bb       	out	0x18, r24	; 24
-	int programm = 0;
-	int maxValue = 0;
-	uint16_t abzugswert = 0;
-	uint8_t maxVumeter = 0b00000000;
+ 132:	6a e2       	ldi	r22, 0x2A	; 42
+ 134:	a6 2e       	mov	r10, r22
+ 136:	b1 2c       	mov	r11, r1
 
 	abzugswert = MittelwertADC();
- 102:	0e 94 44 00 	call	0x88	; 0x88 <MittelwertADC>
- 106:	5c 01       	movw	r10, r24
- 108:	ee 24       	eor	r14, r14
- 10a:	ff 24       	eor	r15, r15
- 10c:	cc 24       	eor	r12, r12
- 10e:	dd 24       	eor	r13, r13
- 110:	10 e0       	ldi	r17, 0x00	; 0
- 112:	4a e2       	ldi	r20, 0x2A	; 42
- 114:	84 2e       	mov	r8, r20
- 116:	91 2c       	mov	r9, r1
 
 	while(1)
 	{
 		value = ReadADC();
- 118:	0e 94 3c 00 	call	0x78	; 0x78 <ReadADC>
+ 138:	50 ef       	ldi	r21, 0xF0	; 240
+ 13a:	c5 2e       	mov	r12, r21
+ 13c:	50 e2       	ldi	r21, 0x20	; 32
+ 13e:	d5 2e       	mov	r13, r21
+ 140:	0e 94 44 00 	call	0x88	; 0x88 <ReadADC>
 		value = value - abzugswert;
-		value = abs(value);
- 11c:	ec 01       	movw	r28, r24
- 11e:	ca 19       	sub	r28, r10
- 120:	db 09       	sbc	r29, r11
- 122:	d7 ff       	sbrs	r29, 7
- 124:	03 c0       	rjmp	.+6      	; 0x12c <main+0x54>
- 126:	d0 95       	com	r29
- 128:	c1 95       	neg	r28
- 12a:	df 4f       	sbci	r29, 0xFF	; 255
-		if (value > 100) {
-			vumeter |= 0b10000000;
-		}*/
+		value = abs(value) * 5;
+ 144:	9c 01       	movw	r18, r24
+ 146:	2e 19       	sub	r18, r14
+ 148:	3f 09       	sbc	r19, r15
+ 14a:	37 ff       	sbrs	r19, 7
+ 14c:	03 c0       	rjmp	.+6      	; 0x154 <main+0x8a>
+ 14e:	30 95       	com	r19
+ 150:	21 95       	neg	r18
+ 152:	3f 4f       	sbci	r19, 0xFF	; 255
+ 154:	c9 01       	movw	r24, r18
+ 156:	88 0f       	add	r24, r24
+ 158:	99 1f       	adc	r25, r25
+ 15a:	88 0f       	add	r24, r24
+ 15c:	99 1f       	adc	r25, r25
+ 15e:	82 0f       	add	r24, r18
+ 160:	93 1f       	adc	r25, r19
+ 162:	ec 01       	movw	r28, r24
+		uint8_t vumeter = 0b00000000;
 		
 		// programm Auswahl
 		if (PIND == 0b11111110)
- 12c:	80 b3       	in	r24, 0x10	; 16
- 12e:	8e 3f       	cpi	r24, 0xFE	; 254
- 130:	19 f4       	brne	.+6      	; 0x138 <main+0x60>
+ 164:	80 b3       	in	r24, 0x10	; 16
+ 166:	8e 3f       	cpi	r24, 0xFE	; 254
+ 168:	29 f4       	brne	.+10     	; 0x174 <main+0xaa>
 		{
 			PORTB = PIND;
- 132:	80 b3       	in	r24, 0x10	; 16
- 134:	88 bb       	out	0x18, r24	; 24
- 136:	15 c0       	rjmp	.+42     	; 0x162 <main+0x8a>
+ 16a:	80 b3       	in	r24, 0x10	; 16
+ 16c:	88 bb       	out	0x18, r24	; 24
 			programm = 1;
+ 16e:	70 92 60 00 	sts	0x0060, r7
+ 172:	07 c0       	rjmp	.+14     	; 0x182 <main+0xb8>
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
 		}
 		else if (PIND == 0b11111101)
- 138:	80 b3       	in	r24, 0x10	; 16
- 13a:	8d 3f       	cpi	r24, 0xFD	; 253
- 13c:	19 f4       	brne	.+6      	; 0x144 <main+0x6c>
+ 174:	80 b3       	in	r24, 0x10	; 16
+ 176:	8d 3f       	cpi	r24, 0xFD	; 253
+ 178:	59 f4       	brne	.+22     	; 0x190 <main+0xc6>
 		{
 			PORTB = PIND;
- 13e:	80 b3       	in	r24, 0x10	; 16
- 140:	88 bb       	out	0x18, r24	; 24
- 142:	41 c0       	rjmp	.+130    	; 0x1c6 <main+0xee>
+ 17a:	80 b3       	in	r24, 0x10	; 16
+ 17c:	88 bb       	out	0x18, r24	; 24
 			programm = 2;
+ 17e:	80 92 60 00 	sts	0x0060, r8
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
+ 182:	60 91 60 00 	lds	r22, 0x0060
+ 186:	80 e0       	ldi	r24, 0x00	; 0
+ 188:	90 e0       	ldi	r25, 0x00	; 0
+ 18a:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
+ 18e:	16 c0       	rjmp	.+44     	; 0x1bc <main+0xf2>
+		}
+		else if (PIND == 0b11111011)
+ 190:	80 b3       	in	r24, 0x10	; 16
+ 192:	8b 3f       	cpi	r24, 0xFB	; 251
+ 194:	29 f4       	brne	.+10     	; 0x1a0 <main+0xd6>
+		{
+			PORTB = PIND;
+ 196:	80 b3       	in	r24, 0x10	; 16
+ 198:	88 bb       	out	0x18, r24	; 24
+			programm = 3;
+ 19a:	90 92 60 00 	sts	0x0060, r9
+ 19e:	f1 cf       	rjmp	.-30     	; 0x182 <main+0xb8>
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
 		}
 		else if (PIND == 0b01111111)
- 144:	80 b3       	in	r24, 0x10	; 16
- 146:	8f 37       	cpi	r24, 0x7F	; 127
- 148:	41 f4       	brne	.+16     	; 0x15a <main+0x82>
+ 1a0:	80 b3       	in	r24, 0x10	; 16
+ 1a2:	8f 37       	cpi	r24, 0x7F	; 127
+ 1a4:	59 f4       	brne	.+22     	; 0x1bc <main+0xf2>
 		{
 			// loeschen der Werte	
 			PORTB = PIND;
- 14a:	80 b3       	in	r24, 0x10	; 16
- 14c:	88 bb       	out	0x18, r24	; 24
+ 1a6:	80 b3       	in	r24, 0x10	; 16
+ 1a8:	88 bb       	out	0x18, r24	; 24
 			maxVumeter = 0b00000000;
+ 1aa:	10 92 61 00 	sts	0x0061, r1
 			maxValue = 0;
+			vumeterCounter = 0;
+ 1ae:	10 92 62 00 	sts	0x0062, r1
 			//programm = 0;
 			abzugswert = MittelwertADC();
- 14e:	0e 94 44 00 	call	0x88	; 0x88 <MittelwertADC>
- 152:	5c 01       	movw	r10, r24
- 154:	cc 24       	eor	r12, r12
- 156:	dd 24       	eor	r13, r13
- 158:	10 e0       	ldi	r17, 0x00	; 0
+ 1b2:	0e 94 4c 00 	call	0x98	; 0x98 <MittelwertADC>
+ 1b6:	7c 01       	movw	r14, r24
+ 1b8:	00 e0       	ldi	r16, 0x00	; 0
+ 1ba:	10 e0       	ldi	r17, 0x00	; 0
 			//PORTB = (uint8_t)(~(0b00000000));
 		}
 
 		if (programm == 1)
- 15a:	81 e0       	ldi	r24, 0x01	; 1
- 15c:	e8 16       	cp	r14, r24
- 15e:	f1 04       	cpc	r15, r1
- 160:	71 f5       	brne	.+92     	; 0x1be <main+0xe6>
+ 1bc:	80 91 60 00 	lds	r24, 0x0060
+ 1c0:	81 30       	cpi	r24, 0x01	; 1
+ 1c2:	69 f5       	brne	.+90     	; 0x21e <main+0x154>
 		{
 			
-				if (value > 40) {
- 162:	c9 32       	cpi	r28, 0x29	; 41
- 164:	d1 05       	cpc	r29, r1
- 166:	08 f4       	brcc	.+2      	; 0x16a <main+0x92>
- 168:	68 c0       	rjmp	.+208    	; 0x23a <main+0x162>
+				if (value > 50) {
+ 1c4:	c3 33       	cpi	r28, 0x33	; 51
+ 1c6:	d1 05       	cpc	r29, r1
+ 1c8:	08 f4       	brcc	.+2      	; 0x1cc <main+0x102>
+ 1ca:	d5 c0       	rjmp	.+426    	; 0x376 <main+0x2ac>
 					vumeter |= 0b00000001;
 				}
-				if (value > 55) {
- 16a:	c8 33       	cpi	r28, 0x38	; 56
- 16c:	d1 05       	cpc	r29, r1
- 16e:	10 f4       	brcc	.+4      	; 0x174 <main+0x9c>
- 170:	81 e0       	ldi	r24, 0x01	; 1
- 172:	1f c0       	rjmp	.+62     	; 0x1b2 <main+0xda>
+				if (value > 228) {
+ 1cc:	c5 3e       	cpi	r28, 0xE5	; 229
+ 1ce:	d1 05       	cpc	r29, r1
+ 1d0:	08 f4       	brcc	.+2      	; 0x1d4 <main+0x10a>
+ 1d2:	cb c0       	rjmp	.+406    	; 0x36a <main+0x2a0>
 					vumeter |= 0b00000010;
 				}
-				if (value > 85) {
- 174:	c6 35       	cpi	r28, 0x56	; 86
- 176:	d1 05       	cpc	r29, r1
- 178:	10 f4       	brcc	.+4      	; 0x17e <main+0xa6>
- 17a:	83 e0       	ldi	r24, 0x03	; 3
- 17c:	1a c0       	rjmp	.+52     	; 0x1b2 <main+0xda>
+				if (value > 406) {
+ 1d4:	81 e0       	ldi	r24, 0x01	; 1
+ 1d6:	c7 39       	cpi	r28, 0x97	; 151
+ 1d8:	d8 07       	cpc	r29, r24
+ 1da:	10 f4       	brcc	.+4      	; 0x1e0 <main+0x116>
+ 1dc:	83 e0       	ldi	r24, 0x03	; 3
+ 1de:	c5 c0       	rjmp	.+394    	; 0x36a <main+0x2a0>
 					vumeter |= 0b00000100;
 				}
-				if (value > 100) {
- 17e:	c5 36       	cpi	r28, 0x65	; 101
- 180:	d1 05       	cpc	r29, r1
- 182:	10 f4       	brcc	.+4      	; 0x188 <main+0xb0>
- 184:	87 e0       	ldi	r24, 0x07	; 7
- 186:	15 c0       	rjmp	.+42     	; 0x1b2 <main+0xda>
+				if (value > 584) {
+ 1e0:	82 e0       	ldi	r24, 0x02	; 2
+ 1e2:	c9 34       	cpi	r28, 0x49	; 73
+ 1e4:	d8 07       	cpc	r29, r24
+ 1e6:	10 f4       	brcc	.+4      	; 0x1ec <main+0x122>
+ 1e8:	87 e0       	ldi	r24, 0x07	; 7
+ 1ea:	bf c0       	rjmp	.+382    	; 0x36a <main+0x2a0>
 					vumeter |= 0b00001000;
 				}
-				if (value > 135) {
- 188:	c8 38       	cpi	r28, 0x88	; 136
- 18a:	d1 05       	cpc	r29, r1
- 18c:	10 f4       	brcc	.+4      	; 0x192 <main+0xba>
- 18e:	8f e0       	ldi	r24, 0x0F	; 15
- 190:	10 c0       	rjmp	.+32     	; 0x1b2 <main+0xda>
+				if (value > 762) {
+ 1ec:	82 e0       	ldi	r24, 0x02	; 2
+ 1ee:	cb 3f       	cpi	r28, 0xFB	; 251
+ 1f0:	d8 07       	cpc	r29, r24
+ 1f2:	10 f4       	brcc	.+4      	; 0x1f8 <main+0x12e>
+ 1f4:	8f e0       	ldi	r24, 0x0F	; 15
+ 1f6:	b9 c0       	rjmp	.+370    	; 0x36a <main+0x2a0>
 					vumeter |= 0b00010000;
 				}
-				if (value > 170) {
- 192:	cb 3a       	cpi	r28, 0xAB	; 171
- 194:	d1 05       	cpc	r29, r1
- 196:	10 f4       	brcc	.+4      	; 0x19c <main+0xc4>
- 198:	8f e1       	ldi	r24, 0x1F	; 31
- 19a:	0b c0       	rjmp	.+22     	; 0x1b2 <main+0xda>
+				if (value > 940) {
+ 1f8:	83 e0       	ldi	r24, 0x03	; 3
+ 1fa:	cd 3a       	cpi	r28, 0xAD	; 173
+ 1fc:	d8 07       	cpc	r29, r24
+ 1fe:	10 f4       	brcc	.+4      	; 0x204 <main+0x13a>
+ 200:	8f e1       	ldi	r24, 0x1F	; 31
+ 202:	b3 c0       	rjmp	.+358    	; 0x36a <main+0x2a0>
 					vumeter |= 0b00100000;
 				}
-				if (value > 190) {
- 19c:	cf 3b       	cpi	r28, 0xBF	; 191
- 19e:	d1 05       	cpc	r29, r1
- 1a0:	10 f4       	brcc	.+4      	; 0x1a6 <main+0xce>
- 1a2:	8f e3       	ldi	r24, 0x3F	; 63
- 1a4:	06 c0       	rjmp	.+12     	; 0x1b2 <main+0xda>
+				if (value > 1118) {
+ 204:	84 e0       	ldi	r24, 0x04	; 4
+ 206:	cf 35       	cpi	r28, 0x5F	; 95
+ 208:	d8 07       	cpc	r29, r24
+ 20a:	10 f4       	brcc	.+4      	; 0x210 <main+0x146>
+ 20c:	8f e3       	ldi	r24, 0x3F	; 63
+ 20e:	ad c0       	rjmp	.+346    	; 0x36a <main+0x2a0>
 					vumeter |= 0b01000000;
 				}
-				if (value > 200) {
- 1a6:	c9 3c       	cpi	r28, 0xC9	; 201
- 1a8:	d1 05       	cpc	r29, r1
- 1aa:	10 f0       	brcs	.+4      	; 0x1b0 <main+0xd8>
- 1ac:	8f ef       	ldi	r24, 0xFF	; 255
- 1ae:	01 c0       	rjmp	.+2      	; 0x1b2 <main+0xda>
- 1b0:	8f e7       	ldi	r24, 0x7F	; 127
-			//value = ReadADC();
-			//value -=850;
+				if (value > 1300) {
+ 210:	c5 51       	subi	r28, 0x15	; 21
+ 212:	d5 40       	sbci	r29, 0x05	; 5
+ 214:	10 f0       	brcs	.+4      	; 0x21a <main+0x150>
+ 216:	8f ef       	ldi	r24, 0xFF	; 255
+ 218:	a8 c0       	rjmp	.+336    	; 0x36a <main+0x2a0>
+ 21a:	8f e7       	ldi	r24, 0x7F	; 127
+ 21c:	a6 c0       	rjmp	.+332    	; 0x36a <main+0x2a0>
 			//value = abs(value);
 			//PORTB = (uint8_t)(~(value));
 			//PORTB = (uint8_t)(~(ReadADC()));
 			PORTB = (uint8_t)(~(vumeter));
- 1b2:	80 95       	com	r24
- 1b4:	88 bb       	out	0x18, r24	; 24
- 1b6:	31 e0       	ldi	r19, 0x01	; 1
- 1b8:	e3 2e       	mov	r14, r19
- 1ba:	f1 2c       	mov	r15, r1
- 1bc:	36 c0       	rjmp	.+108    	; 0x22a <main+0x152>
 		}
 		else if (programm == 2)
- 1be:	82 e0       	ldi	r24, 0x02	; 2
- 1c0:	e8 16       	cp	r14, r24
- 1c2:	f1 04       	cpc	r15, r1
- 1c4:	91 f5       	brne	.+100    	; 0x22a <main+0x152>
+ 21e:	80 91 60 00 	lds	r24, 0x0060
+ 222:	82 30       	cpi	r24, 0x02	; 2
+ 224:	09 f0       	breq	.+2      	; 0x228 <main+0x15e>
+ 226:	82 c0       	rjmp	.+260    	; 0x32c <main+0x262>
 		{
 			// maximalen pust wert speichern
 			// wenn maximal Pust wert groesser als der letzte ist
 			if (value > maxValue)
- 1c6:	cc 16       	cp	r12, r28
- 1c8:	dd 06       	cpc	r13, r29
- 1ca:	10 f0       	brcs	.+4      	; 0x1d0 <main+0xf8>
- 1cc:	e6 01       	movw	r28, r12
- 1ce:	26 c0       	rjmp	.+76     	; 0x21c <main+0x144>
-				}
-				if (value > 200) {
-					vumeter |= 0b10000000;
-				}*/
-
-				if (value > 200) {
- 1d0:	c9 3c       	cpi	r28, 0xC9	; 201
- 1d2:	d1 05       	cpc	r29, r1
- 1d4:	18 f1       	brcs	.+70     	; 0x21c <main+0x144>
-					//vumeter |= 0b00000001;
+ 228:	0c 17       	cp	r16, r28
+ 22a:	1d 07       	cpc	r17, r29
+ 22c:	08 f0       	brcs	.+2      	; 0x230 <main+0x166>
+ 22e:	7b c0       	rjmp	.+246    	; 0x326 <main+0x25c>
+			{
+				if (value > 50) {
+ 230:	c3 33       	cpi	r28, 0x33	; 51
+ 232:	d1 05       	cpc	r29, r1
+ 234:	08 f4       	brcc	.+2      	; 0x238 <main+0x16e>
+ 236:	76 c0       	rjmp	.+236    	; 0x324 <main+0x25a>
 					maxVumeter |= 0b00000001;
- 1d6:	11 60       	ori	r17, 0x01	; 1
+ 238:	80 91 61 00 	lds	r24, 0x0061
+ 23c:	81 60       	ori	r24, 0x01	; 1
+ 23e:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 242:	60 91 61 00 	lds	r22, 0x0061
+ 246:	81 e0       	ldi	r24, 0x01	; 1
+ 248:	90 e0       	ldi	r25, 0x00	; 0
+ 24a:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 215) {
- 1d8:	c8 3d       	cpi	r28, 0xD8	; 216
- 1da:	d1 05       	cpc	r29, r1
- 1dc:	f8 f0       	brcs	.+62     	; 0x21c <main+0x144>
-					//vumeter |= 0b00000010;
+				if (value > 228) {
+ 24e:	c5 3e       	cpi	r28, 0xE5	; 229
+ 250:	d1 05       	cpc	r29, r1
+ 252:	08 f4       	brcc	.+2      	; 0x256 <main+0x18c>
+ 254:	67 c0       	rjmp	.+206    	; 0x324 <main+0x25a>
 					maxVumeter |= 0b00000010;
- 1de:	12 60       	ori	r17, 0x02	; 2
+ 256:	80 91 61 00 	lds	r24, 0x0061
+ 25a:	82 60       	ori	r24, 0x02	; 2
+ 25c:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 260:	60 91 61 00 	lds	r22, 0x0061
+ 264:	81 e0       	ldi	r24, 0x01	; 1
+ 266:	90 e0       	ldi	r25, 0x00	; 0
+ 268:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 355) {
- 1e0:	81 e0       	ldi	r24, 0x01	; 1
- 1e2:	c4 36       	cpi	r28, 0x64	; 100
- 1e4:	d8 07       	cpc	r29, r24
- 1e6:	d0 f0       	brcs	.+52     	; 0x21c <main+0x144>
-					//vumeter |= 0b00000100;
+				if (value > 406) {
+ 26c:	81 e0       	ldi	r24, 0x01	; 1
+ 26e:	c7 39       	cpi	r28, 0x97	; 151
+ 270:	d8 07       	cpc	r29, r24
+ 272:	08 f4       	brcc	.+2      	; 0x276 <main+0x1ac>
+ 274:	57 c0       	rjmp	.+174    	; 0x324 <main+0x25a>
 					maxVumeter |= 0b00000100;
- 1e8:	14 60       	ori	r17, 0x04	; 4
+ 276:	80 91 61 00 	lds	r24, 0x0061
+ 27a:	84 60       	ori	r24, 0x04	; 4
+ 27c:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 280:	60 91 61 00 	lds	r22, 0x0061
+ 284:	81 e0       	ldi	r24, 0x01	; 1
+ 286:	90 e0       	ldi	r25, 0x00	; 0
+ 288:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 425) {
- 1ea:	81 e0       	ldi	r24, 0x01	; 1
- 1ec:	ca 3a       	cpi	r28, 0xAA	; 170
- 1ee:	d8 07       	cpc	r29, r24
- 1f0:	a8 f0       	brcs	.+42     	; 0x21c <main+0x144>
-					//vumeter |= 0b00001000;
+				if (value > 584) {
+ 28c:	82 e0       	ldi	r24, 0x02	; 2
+ 28e:	c9 34       	cpi	r28, 0x49	; 73
+ 290:	d8 07       	cpc	r29, r24
+ 292:	08 f4       	brcc	.+2      	; 0x296 <main+0x1cc>
+ 294:	47 c0       	rjmp	.+142    	; 0x324 <main+0x25a>
 					maxVumeter |= 0b00001000;
- 1f2:	18 60       	ori	r17, 0x08	; 8
+ 296:	80 91 61 00 	lds	r24, 0x0061
+ 29a:	88 60       	ori	r24, 0x08	; 8
+ 29c:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 2a0:	60 91 61 00 	lds	r22, 0x0061
+ 2a4:	81 e0       	ldi	r24, 0x01	; 1
+ 2a6:	90 e0       	ldi	r25, 0x00	; 0
+ 2a8:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 565) {
- 1f4:	82 e0       	ldi	r24, 0x02	; 2
- 1f6:	c6 33       	cpi	r28, 0x36	; 54
- 1f8:	d8 07       	cpc	r29, r24
- 1fa:	80 f0       	brcs	.+32     	; 0x21c <main+0x144>
-					//vumeter |= 0b00010000;
+				if (value > 762) {
+ 2ac:	82 e0       	ldi	r24, 0x02	; 2
+ 2ae:	cb 3f       	cpi	r28, 0xFB	; 251
+ 2b0:	d8 07       	cpc	r29, r24
+ 2b2:	c0 f1       	brcs	.+112    	; 0x324 <main+0x25a>
 					maxVumeter |= 0b00010000;
- 1fc:	10 61       	ori	r17, 0x10	; 16
+ 2b4:	80 91 61 00 	lds	r24, 0x0061
+ 2b8:	80 61       	ori	r24, 0x10	; 16
+ 2ba:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 2be:	60 91 61 00 	lds	r22, 0x0061
+ 2c2:	81 e0       	ldi	r24, 0x01	; 1
+ 2c4:	90 e0       	ldi	r25, 0x00	; 0
+ 2c6:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 665) {
- 1fe:	82 e0       	ldi	r24, 0x02	; 2
- 200:	ca 39       	cpi	r28, 0x9A	; 154
- 202:	d8 07       	cpc	r29, r24
- 204:	58 f0       	brcs	.+22     	; 0x21c <main+0x144>
-					//vumeter |= 0b00100000;
+				if (value > 940) {
+ 2ca:	83 e0       	ldi	r24, 0x03	; 3
+ 2cc:	cd 3a       	cpi	r28, 0xAD	; 173
+ 2ce:	d8 07       	cpc	r29, r24
+ 2d0:	48 f1       	brcs	.+82     	; 0x324 <main+0x25a>
 					maxVumeter |= 0b00100000;
- 206:	10 62       	ori	r17, 0x20	; 32
+ 2d2:	80 91 61 00 	lds	r24, 0x0061
+ 2d6:	80 62       	ori	r24, 0x20	; 32
+ 2d8:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 2dc:	60 91 61 00 	lds	r22, 0x0061
+ 2e0:	81 e0       	ldi	r24, 0x01	; 1
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 765) {
- 208:	82 e0       	ldi	r24, 0x02	; 2
- 20a:	ce 3f       	cpi	r28, 0xFE	; 254
- 20c:	d8 07       	cpc	r29, r24
- 20e:	30 f0       	brcs	.+12     	; 0x21c <main+0x144>
-					//vumeter |= 0b01000000;
+				if (value > 1118) {
+ 2e8:	84 e0       	ldi	r24, 0x04	; 4
+ 2ea:	cf 35       	cpi	r28, 0x5F	; 95
+ 2ec:	d8 07       	cpc	r29, r24
+ 2ee:	d0 f0       	brcs	.+52     	; 0x324 <main+0x25a>
 					maxVumeter |= 0b01000000;
- 210:	10 64       	ori	r17, 0x40	; 64
+ 2f0:	80 91 61 00 	lds	r24, 0x0061
+ 2f4:	80 64       	ori	r24, 0x40	; 64
+ 2f6:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 2fa:	60 91 61 00 	lds	r22, 0x0061
+ 2fe:	81 e0       	ldi	r24, 0x01	; 1
+ 300:	90 e0       	ldi	r25, 0x00	; 0
+ 302:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
 				}
-				if (value > 845) {
- 212:	83 e0       	ldi	r24, 0x03	; 3
- 214:	ce 34       	cpi	r28, 0x4E	; 78
- 216:	d8 07       	cpc	r29, r24
- 218:	08 f0       	brcs	.+2      	; 0x21c <main+0x144>
-					//vumeter |= 0b10000000;
+				if (value > 1300) {
+ 306:	85 e0       	ldi	r24, 0x05	; 5
+ 308:	c5 31       	cpi	r28, 0x15	; 21
+ 30a:	d8 07       	cpc	r29, r24
+ 30c:	58 f0       	brcs	.+22     	; 0x324 <main+0x25a>
 					maxVumeter |= 0b10000000;
- 21a:	10 68       	ori	r17, 0x80	; 128
+ 30e:	80 91 61 00 	lds	r24, 0x0061
+ 312:	80 68       	ori	r24, 0x80	; 128
+ 314:	80 93 61 00 	sts	0x0061, r24
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
+ 318:	60 91 61 00 	lds	r22, 0x0061
+ 31c:	81 e0       	ldi	r24, 0x01	; 1
+ 31e:	90 e0       	ldi	r25, 0x00	; 0
+ 320:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
+ 324:	8e 01       	movw	r16, r28
 				}
 
 				maxValue = value;
 			}
-
+			
 			PORTB = (uint8_t)(~(maxVumeter));
- 21c:	81 2f       	mov	r24, r17
- 21e:	80 95       	com	r24
- 220:	88 bb       	out	0x18, r24	; 24
- 222:	6e 01       	movw	r12, r28
- 224:	22 e0       	ldi	r18, 0x02	; 2
- 226:	e2 2e       	mov	r14, r18
- 228:	f1 2c       	mov	r15, r1
- 22a:	80 ed       	ldi	r24, 0xD0	; 208
- 22c:	97 e0       	ldi	r25, 0x07	; 7
- 22e:	f4 01       	movw	r30, r8
- 230:	31 97       	sbiw	r30, 0x01	; 1
- 232:	f1 f7       	brne	.-4      	; 0x230 <main+0x158>
+ 326:	80 91 61 00 	lds	r24, 0x0061
+ 32a:	1f c0       	rjmp	.+62     	; 0x36a <main+0x2a0>
+
+		}
+		else if (programm == 3)
+ 32c:	80 91 60 00 	lds	r24, 0x0060
+ 330:	83 30       	cpi	r24, 0x03	; 3
+ 332:	e9 f4       	brne	.+58     	; 0x36e <main+0x2a4>
+		{
+			if (value > 300)
+ 334:	cd 52       	subi	r28, 0x2D	; 45
+ 336:	d1 40       	sbci	r29, 0x01	; 1
+ 338:	b0 f0       	brcs	.+44     	; 0x366 <main+0x29c>
+			{
+				vumeterCounter++;
+ 33a:	80 91 62 00 	lds	r24, 0x0062
+ 33e:	8f 5f       	subi	r24, 0xFF	; 255
+ 340:	80 93 62 00 	sts	0x0062, r24
+				eeprom_write_byte(&eeVumeterCounter, vumeterCounter);	// im EEPROM sichern				
+ 344:	60 91 62 00 	lds	r22, 0x0062
+ 348:	82 e0       	ldi	r24, 0x02	; 2
+ 34a:	90 e0       	ldi	r25, 0x00	; 0
+ 34c:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <__eewr_byte_m16>
+				PORTB = (uint8_t)(~(vumeterCounter));
+ 350:	80 91 62 00 	lds	r24, 0x0062
+ 354:	80 95       	com	r24
+ 356:	88 bb       	out	0x18, r24	; 24
+ 358:	80 ed       	ldi	r24, 0xD0	; 208
+ 35a:	97 e0       	ldi	r25, 0x07	; 7
+ 35c:	f5 01       	movw	r30, r10
+ 35e:	31 97       	sbiw	r30, 0x01	; 1
+ 360:	f1 f7       	brne	.-4      	; 0x35e <main+0x294>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
 		{
 			// wait 1/10 ms
 			_delay_loop_2(((F_CPU) / 4e3) / 10);
 			__ticks --;
- 234:	01 97       	sbiw	r24, 0x01	; 1
+ 362:	01 97       	sbiw	r24, 0x01	; 1
 		__ticks = 1;
 	else if (__tmp > 65535)
 	{
 		//	__ticks = requested delay in 1/10 ms
 		__ticks = (uint16_t) (__ms * 10.0);
 		while(__ticks)
- 236:	d9 f7       	brne	.-10     	; 0x22e <main+0x156>
- 238:	6f cf       	rjmp	.-290    	; 0x118 <main+0x40>
- 23a:	80 e0       	ldi	r24, 0x00	; 0
- 23c:	ba cf       	rjmp	.-140    	; 0x1b2 <main+0xda>
+ 364:	d9 f7       	brne	.-10     	; 0x35c <main+0x292>
+				_delay_ms(200);
+			}
 
-0000023e <_exit>:
- 23e:	f8 94       	cli
+			PORTB = (uint8_t)(~(vumeterCounter));
+ 366:	80 91 62 00 	lds	r24, 0x0062
+ 36a:	80 95       	com	r24
+ 36c:	88 bb       	out	0x18, r24	; 24
+ 36e:	c6 01       	movw	r24, r12
+ 370:	01 97       	sbiw	r24, 0x01	; 1
+ 372:	f1 f7       	brne	.-4      	; 0x370 <main+0x2a6>
+ 374:	e5 ce       	rjmp	.-566    	; 0x140 <main+0x76>
+ 376:	80 e0       	ldi	r24, 0x00	; 0
+ 378:	f8 cf       	rjmp	.-16     	; 0x36a <main+0x2a0>
 
-00000240 <__stop_program>:
- 240:	ff cf       	rjmp	.-2      	; 0x240 <__stop_program>
+0000037a <__udivmodhi4>:
+ 37a:	aa 1b       	sub	r26, r26
+ 37c:	bb 1b       	sub	r27, r27
+ 37e:	51 e1       	ldi	r21, 0x11	; 17
+ 380:	07 c0       	rjmp	.+14     	; 0x390 <__udivmodhi4_ep>
+
+00000382 <__udivmodhi4_loop>:
+ 382:	aa 1f       	adc	r26, r26
+ 384:	bb 1f       	adc	r27, r27
+ 386:	a6 17       	cp	r26, r22
+ 388:	b7 07       	cpc	r27, r23
+ 38a:	10 f0       	brcs	.+4      	; 0x390 <__udivmodhi4_ep>
+ 38c:	a6 1b       	sub	r26, r22
+ 38e:	b7 0b       	sbc	r27, r23
+
+00000390 <__udivmodhi4_ep>:
+ 390:	88 1f       	adc	r24, r24
+ 392:	99 1f       	adc	r25, r25
+ 394:	5a 95       	dec	r21
+ 396:	a9 f7       	brne	.-22     	; 0x382 <__udivmodhi4_loop>
+ 398:	80 95       	com	r24
+ 39a:	90 95       	com	r25
+ 39c:	bc 01       	movw	r22, r24
+ 39e:	cd 01       	movw	r24, r26
+ 3a0:	08 95       	ret
+
+000003a2 <__eerd_byte_m16>:
+ 3a2:	e1 99       	sbic	0x1c, 1	; 28
+ 3a4:	fe cf       	rjmp	.-4      	; 0x3a2 <__eerd_byte_m16>
+ 3a6:	9f bb       	out	0x1f, r25	; 31
+ 3a8:	8e bb       	out	0x1e, r24	; 30
+ 3aa:	e0 9a       	sbi	0x1c, 0	; 28
+ 3ac:	99 27       	eor	r25, r25
+ 3ae:	8d b3       	in	r24, 0x1d	; 29
+ 3b0:	08 95       	ret
+
+000003b2 <__eewr_byte_m16>:
+ 3b2:	26 2f       	mov	r18, r22
+
+000003b4 <__eewr_r18_m16>:
+ 3b4:	e1 99       	sbic	0x1c, 1	; 28
+ 3b6:	fe cf       	rjmp	.-4      	; 0x3b4 <__eewr_r18_m16>
+ 3b8:	9f bb       	out	0x1f, r25	; 31
+ 3ba:	8e bb       	out	0x1e, r24	; 30
+ 3bc:	2d bb       	out	0x1d, r18	; 29
+ 3be:	0f b6       	in	r0, 0x3f	; 63
+ 3c0:	f8 94       	cli
+ 3c2:	e2 9a       	sbi	0x1c, 2	; 28
+ 3c4:	e1 9a       	sbi	0x1c, 1	; 28
+ 3c6:	0f be       	out	0x3f, r0	; 63
+ 3c8:	01 96       	adiw	r24, 0x01	; 1
+ 3ca:	08 95       	ret
+
+000003cc <_exit>:
+ 3cc:	f8 94       	cli
+
+000003ce <__stop_program>:
+ 3ce:	ff cf       	rjmp	.-2      	; 0x3ce <__stop_program>

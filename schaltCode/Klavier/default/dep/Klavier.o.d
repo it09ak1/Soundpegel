@@ -11,7 +11,9 @@ Klavier.o: ../Klavier.c c:/winavr/lib/gcc/../../avr/include/avr/io.h \
   c:/winavr/lib/gcc/../../avr/include/avr/interrupt.h \
   c:/winavr/lib/gcc/../../avr/include/util/delay.h \
   c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h \
-  c:/winavr/lib/gcc/../../avr/include/math.h
+  c:/winavr/lib/gcc/../../avr/include/math.h \
+  c:/winavr/lib/gcc/../../avr/include/avr/eeprom.h \
+  c:\winavr\bin\../lib/gcc/avr/4.3.3/include/stddef.h
 
 c:/winavr/lib/gcc/../../avr/include/avr/io.h:
 
@@ -40,3 +42,7 @@ c:/winavr/lib/gcc/../../avr/include/util/delay.h:
 c:/winavr/lib/gcc/../../avr/include/util/delay_basic.h:
 
 c:/winavr/lib/gcc/../../avr/include/math.h:
+
+c:/winavr/lib/gcc/../../avr/include/avr/eeprom.h:
+
+c:\winavr\bin\../lib/gcc/avr/4.3.3/include/stddef.h:

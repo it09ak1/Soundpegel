@@ -4,7 +4,15 @@
 //#define F_CPU 16000000
 #include <util/delay.h>
 #include <math.h>
+#include <avr/eeprom.h>
 
+volatile uint8_t programm = 0;
+volatile uint8_t maxVumeter = 0b00000000;
+volatile uint8_t vumeterCounter = 0;
+// Variable im EEPROM
+uint8_t eeProgramm EEMEM;
+uint8_t eeMaxVumeter EEMEM;
+uint8_t eeVumeterCounter EEMEM;
 
 void InitADC()
 {
@@ -16,7 +24,7 @@ void InitADC()
 	// 10x Verstaerkung
 	//ADMUX |= (1<<REFS0) | (1<<MUX3) | (1<<MUX0);
 	// ohne Verstaerkung
-	ADMUX = (1<<REFS0);
+	ADMUX = (1<<REFS0) | (1<<REFS1);
 	// ADC3 und ADC 2
 	//ADMUX |= (1<<REFS0) | (1<<ADLAR) | (1<<MUX3) | (1<<MUX2) | (1<<MUX1) | (1<<MUX10);
 	ADCSRA = (1 << ADEN) | (1 << ADPS1) | (1 << ADPS0) | ( 0 << ADPS2);
@@ -37,16 +45,14 @@ uint16_t MittelwertADC()
 	uint16_t sum;
 	uint16_t mittelwert;
 
-	for (int i=0; i<=7;i++)
+	for (int i=0; i<=29;i++)
 	{
 		uint16_t singleValue = ReadADC();
 
 		sum += singleValue;
-
-		_delay_ms(250);
 	}
 
-	mittelwert = sum/8;
+	mittelwert = sum/30;
 
 	return mittelwert;
 }
@@ -57,20 +63,12 @@ int main(void)
 	DDRB = 0xff;
 	DDRD = 0x00;
 	DDRA = 0x00;
+	programm = eeprom_read_byte(&eeProgramm);				// Programm aus EEPROM lesen
+	maxVumeter = eeprom_read_byte(&eeMaxVumeter);			// Maximalen Wert aus EEPROM lesen
+	vumeterCounter = eeprom_read_byte(&eeVumeterCounter);	// Maximalen Wert aus EEPROM lesen
 
 	InitADC();
 	PORTB = (uint8_t)(~(0b00000000));
-	//PORTB = (uint8_t)(~(0b00000001));
-
-	// Interrupts programmieren
-	//GICR	|= ( (1<<INT0) | (1<<INT1) | (1<<INT2) );	// INT0, 1, 2 zulassen
-	// INT0 und INT1 fallende Flanke
-	//MCUCR	|= ( (1<<ISC01) | (1<<ISC11) );	// INT0, INT1: ISC01 und ISC11 setzen
-	//MCUCR	&= ~( (1<<ISC00) | (1<<ISC10) );	// INT0, INT1: ISC00 und ISC10 löschen
-	//MCUCSR	&= ~(1<<ISC2);	// INT2: Interrup Sense Control 2: fallende Flanke
-
-	//sei();
-	//ledOut = 0b00000000;
 
 	// warum uint16_t und nicht unsigned int:
 	// uint16_t erhoeht die portabilitaet des Codes
@@ -79,10 +77,9 @@ int main(void)
 
 	uint16_t value = 0;
 	//int pinD = PIND;
-	int programm = 0;
-	int maxValue = 0;
+	uint16_t maxValue = 0;
 	uint16_t abzugswert = 0;
-	uint8_t maxVumeter = 0b00000000;
+	
 
 	abzugswert = MittelwertADC();
 
@@ -90,46 +87,27 @@ int main(void)
 	{
 		value = ReadADC();
 		value = value - abzugswert;
-		value = abs(value);
+		value = abs(value) * 5;
 		uint8_t vumeter = 0b00000000;
-		
-		// BA Config
-		/*
-		if (value > 50) {
-			vumeter |= 0b00000001;
-		}
-		if (value > 55) {
-			vumeter |= 0b00000010;
-		}
-		if (value > 60) {
-			vumeter |= 0b00000100;
-		}
-		if (value > 65) {
-			vumeter |= 0b00001000;
-		}
-		if (value > 70) {
-			vumeter |= 0b00010000;
-		}
-		if (value > 75) {
-			vumeter |= 0b00100000;
-		}
-		if (value > 85) {
-			vumeter |= 0b01000000;
-		}
-		if (value > 100) {
-			vumeter |= 0b10000000;
-		}*/
 		
 		// programm Auswahl
 		if (PIND == 0b11111110)
 		{
 			PORTB = PIND;
 			programm = 1;
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
 		}
 		else if (PIND == 0b11111101)
 		{
 			PORTB = PIND;
 			programm = 2;
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
+		}
+		else if (PIND == 0b11111011)
+		{
+			PORTB = PIND;
+			programm = 3;
+			eeprom_write_byte(&eeProgramm, programm);	// im EEPROM sichern
 		}
 		else if (PIND == 0b01111111)
 		{
@@ -137,6 +115,7 @@ int main(void)
 			PORTB = PIND;
 			maxVumeter = 0b00000000;
 			maxValue = 0;
+			vumeterCounter = 0;
 			//programm = 0;
 			abzugswert = MittelwertADC();
 			//PORTB = (uint8_t)(~(0b00000000));
@@ -145,58 +124,30 @@ int main(void)
 		if (programm == 1)
 		{
 			
-				if (value > 40) {
+				if (value > 50) {
 					vumeter |= 0b00000001;
 				}
-				if (value > 55) {
+				if (value > 228) {
 					vumeter |= 0b00000010;
 				}
-				if (value > 85) {
+				if (value > 406) {
 					vumeter |= 0b00000100;
 				}
-				if (value > 100) {
+				if (value > 584) {
 					vumeter |= 0b00001000;
 				}
-				if (value > 135) {
+				if (value > 762) {
 					vumeter |= 0b00010000;
 				}
-				if (value > 170) {
+				if (value > 940) {
 					vumeter |= 0b00100000;
 				}
-				if (value > 190) {
+				if (value > 1118) {
 					vumeter |= 0b01000000;
 				}
-				if (value > 200) {
+				if (value > 1300) {
 					vumeter |= 0b10000000;
 				}
-
-			// home work
-			// eifach reinpusten und sehen wie hoch es steigt
-			/*
-			if (value > 200) {
-					vumeter |= 0b00000001;
-				}
-				if (value > 275) {
-					vumeter |= 0b00000010;
-				}
-				if (value > 305) {
-					vumeter |= 0b00000100;
-				}
-				if (value > 335) {
-					vumeter |= 0b00001000;
-				}
-				if (value > 365) {
-					vumeter |= 0b00010000;
-				}
-				if (value > 395) {
-					vumeter |= 0b00100000;
-				}
-				if (value > 425) {
-					vumeter |= 0b01000000;
-				}
-				if (value > 555) {
-					vumeter |= 0b10000000;
-				}*/
 		
 			//value = ReadADC();
 			//value -=850;
@@ -211,72 +162,59 @@ int main(void)
 			// wenn maximal Pust wert groesser als der letzte ist
 			if (value > maxValue)
 			{
-				/*
-				if (value > 40) {
-					vumeter |= 0b00000001;
-				}
-				if (value > 55) {
-					vumeter |= 0b00000010;
-				}
-				if (value > 85) {
-					vumeter |= 0b00000100;
-				}
-				if (value > 100) {
-					vumeter |= 0b00001000;
-				}
-				if (value > 135) {
-					vumeter |= 0b00010000;
-				}
-				if (value > 170) {
-					vumeter |= 0b00100000;
-				}
-				if (value > 190) {
-					vumeter |= 0b01000000;
-				}
-				if (value > 200) {
-					vumeter |= 0b10000000;
-				}*/
-
-				if (value > 200) {
-					//vumeter |= 0b00000001;
+				if (value > 50) {
 					maxVumeter |= 0b00000001;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 215) {
-					//vumeter |= 0b00000010;
+				if (value > 228) {
 					maxVumeter |= 0b00000010;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 355) {
-					//vumeter |= 0b00000100;
+				if (value > 406) {
 					maxVumeter |= 0b00000100;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 425) {
-					//vumeter |= 0b00001000;
+				if (value > 584) {
 					maxVumeter |= 0b00001000;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 565) {
-					//vumeter |= 0b00010000;
+				if (value > 762) {
 					maxVumeter |= 0b00010000;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 665) {
-					//vumeter |= 0b00100000;
+				if (value > 940) {
 					maxVumeter |= 0b00100000;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 765) {
-					//vumeter |= 0b01000000;
+				if (value > 1118) {
 					maxVumeter |= 0b01000000;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
-				if (value > 845) {
-					//vumeter |= 0b10000000;
+				if (value > 1300) {
 					maxVumeter |= 0b10000000;
+					eeprom_write_byte(&eeMaxVumeter, maxVumeter);	// im EEPROM sichern
 				}
 
 				maxValue = value;
 			}
-
+			
 			PORTB = (uint8_t)(~(maxVumeter));
+
+		}
+		else if (programm == 3)
+		{
+			if (value > 300)
+			{
+				vumeterCounter++;
+				eeprom_write_byte(&eeVumeterCounter, vumeterCounter);	// im EEPROM sichern				
+				PORTB = (uint8_t)(~(vumeterCounter));
+				_delay_ms(200);
+			}
+
+			PORTB = (uint8_t)(~(vumeterCounter));
 		}
 
-		_delay_ms(200);
+		_delay_ms(20);
 		
 	}
 
